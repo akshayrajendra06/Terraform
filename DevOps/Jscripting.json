@@ -1,0 +1,27 @@
+pipeline {
+    
+    stages {
+
+        stage('Clone-code') {
+            steps {
+               git branch: 'main', url: 'https: //github.com/akshayrajendra06/tweet-trend-new.git'
+            }
+        }
+
+        steps {
+            script {
+                sh "M3/bin/mvn clen compile"
+            }
+        }
+    }
+    
+    post {
+        success {
+            echo 'Build complete success !'
+        }
+        
+        failure {
+            echo 'Build failed.'
+        }
+    }
+}
